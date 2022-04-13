@@ -1,0 +1,31 @@
+`timescale 1ns / 1ps
+
+module PC_ROM_ID_tb();
+
+reg clk;
+reg reset;
+
+wire [4:0] RD, RS1, RS2;
+wire [11:0] IMM;
+
+PC_ROM_ID dut (
+	.reset (reset),
+	.clock (clk), 
+	.RD (RD),
+	.RS1 (RS1),
+	.RS2 (RS2),
+	.IMM (IMM)
+);
+
+initial begin
+	clk = 1'b0;
+	forever #1 clk = ~clk;
+end
+
+initial begin 
+	reset = 1'b1;
+	#10
+	reset = 1'b0;
+end
+
+endmodule
